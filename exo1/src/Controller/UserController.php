@@ -26,18 +26,18 @@
 
 		$entityManager = $this->getDoctrine()->getManager();
 
-		$product = new User();
-		$product->setName('Fate');
-		$product->setFirstName('Tobias');
-		$product->setAdress('Somewhere over the rainbow !');
+		$user = new User();
+		$user->setName('Fate');
+		$user->setFirstName('Tobias');
+		$user->setAdress('Somewhere over the rainbow !');
 
 	// tell Doctrine you want to (eventually) save the Product (no queries yet)
-		$entityManager->persist($product);
+		$entityManager->persist($user);
 
 	// actually executes the queries (i.e. the INSERT query)
 		//$entityManager->flush();
 
-		return new Response('Saved new product with id '.$product->getId());
+		return new Response('Saved new user with id '.$user->getId());
 	}
 }
 ?>
