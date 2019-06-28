@@ -9,22 +9,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BienType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('title')
-            ->add('description')
-            ->add('price')
-            ->add('image')
-            ->add('category')
-            ->add('owner')
-        ;
-    }
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+			->add('title')
+			->add('description')
+			->add('price')
+			->add('image')
+			->add('category')
+			->add('owner')
+		;
+	}
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Bien::class,
-        ]);
-    }
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults([
+			'data_class' => Bien::class,
+		]);
+	}
 }
