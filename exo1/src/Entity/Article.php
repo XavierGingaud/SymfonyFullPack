@@ -27,11 +27,6 @@ class Article
     private $content;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $writer;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -72,18 +67,6 @@ class Article
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getWriter(): ?int
-    {
-        return $this->writer;
-    }
-
-    public function setWriter(int $writer): self
-    {
-        $this->writer = $writer;
 
         return $this;
     }

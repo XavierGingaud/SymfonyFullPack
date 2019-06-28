@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArticleType extends AbstractType
@@ -12,9 +15,10 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('field_name')
-            ->add('dueDate', null, ['widget' => 'single_text'])
-            ->add('save', SubmitType::class)
+            ->add('title')
+            ->add('content', TextArea::class)
+            ->add('created_at', DateTimeType::class)
+            ->add('save', SubmitType::class, ['label' => 'Créer un nouvel article'])
         ;
     }
 
@@ -22,7 +26,7 @@ class ArticleType extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
-            'data_class' => Task::class,
+            'data_class' => Article::class,
         ]);
     }
 }

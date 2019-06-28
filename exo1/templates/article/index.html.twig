@@ -17,4 +17,11 @@
         <li>Your template at <code><a href="{{ 'C:/Symfony/exo1/templates/article/index.html.twig'|file_link(0) }}">templates/article/index.html.twig</a></code></li>
     </ul>
 </div>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <input type="submit" class="btn" value="Create"/>
+{{ form_end(form) }}
+
 {% endblock %}
