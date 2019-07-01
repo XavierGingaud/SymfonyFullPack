@@ -1,0 +1,9 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show mt-5">
+	<h1 class="text-center">Votre profil</h1>
+	<div class="border rounded w-75 mx-auto my-2 ">
+	    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+	    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+	</div>
+</div>
