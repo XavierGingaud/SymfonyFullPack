@@ -36,12 +36,12 @@
 						</li>
 					{% endif %}
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('bien_index') }}">Mes Biens</a>
-					</li>
-					{% endif %}
-
-					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('bien_new') }}">Ajouter un Bien</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('bien_index') }}">Mes Biens</a>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ path('fos_user_profile_show') }}">Profil</a>
 						</li>
