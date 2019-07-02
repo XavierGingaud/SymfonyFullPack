@@ -21,7 +21,7 @@ class BienController extends AbstractController
     public function index(BienRepository $bienRepository): Response
     {
         return $this->render('bien/index.html.twig', [
-            'biens' => $bienRepository->findAll(),
+            'biens' => $bienRepository->findBy(['owner_id' == $this->getUser()->getId()]),
         ]);
     }
 
@@ -31,10 +31,12 @@ class BienController extends AbstractController
     public function new(Request $request): Response
     {
         $bien = new Bien();
+        $user = $this->getUser();
         $form = $this->createForm(BienType::class, $bien);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $bien->setOwner($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($bien);
             $entityManager->flush();
@@ -53,9 +55,23 @@ class BienController extends AbstractController
      */
     public function show(Bien $bien): Response
     {
-        return $this->render('bien/show.html.twig', [
-            'bien' => $bien,
-        ]);
+        if ($this->getUser()){
+            if ($this->getUser() == $bien->getOwner() || $this->getUser()->hasRole('ROLE_SUPER_ADMIN')){
+                $canEdit = true;
+                return $this->render('bien/show.html.twig', [
+                    'bien' => $bien,
+                    'canEdit' => $canEdit,
+                ]);
+            }else{
+                return $this->render('bien/show.html.twig', [
+                    'bien' => $bien,
+                ]);
+            }
+        }else{
+            return $this->render('bien/show.html.twig', [
+                'bien' => $bien,
+            ]);
+        }
     }
 
     /**

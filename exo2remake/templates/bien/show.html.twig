@@ -3,18 +3,10 @@
 {% block title %}Bien{% endblock %}
 
 {% block body %}
-    <h1>Bien</h1>
+    <h1 class="mt-5">{{ bien.title }}</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ bien.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ bien.title }}</td>
-            </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ bien.description }}</td>
@@ -29,14 +21,19 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ bien.image }}</td>
+                <td><img src="{{ bien.image }}" alt="placholder"></td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('bien_index') }}">back to list</a>
+    <a href="{{ path('home') }}">Retour à la liste des bien</a>
 
-    <a href="{{ path('bien_edit', {'id': bien.id}) }}">edit</a>
+    {% if canEdit is defined %}
 
-    {{ include('bien/_delete_form.html.twig') }}
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-success" href="{{ path('bien_edit', {'id': bien.id}) }}">Éditer</a>
+            {{ include('bien/_delete_form.html.twig') }}
+        </div>
+
+    {% endif %}
 {% endblock %}

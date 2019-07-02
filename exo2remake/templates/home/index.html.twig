@@ -9,6 +9,22 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Bienvenue sur le site d'annonces immobilière !</h1>
+    <h1 class="my-3">Bienvenue sur le site d'annonces immobilière !</h1>
+    <h2 class="mb-3">Liste des Biens</h2>
+    {% for bien in biens %}
+        <div class="col-4">
+            <h3>{{ bien.title }}</h3>
+            <img src="{{ bien.image }}" alt="placholder" class="img img-fluid">
+            <p>{{ bien.description }}</p>
+            <p>{{ bien.price }}.00€<br>{{ bien.category }}</p>
+            <p>
+                <a href="{{ path('bien_show', {'id': bien.id}) }}"><button class="btn btn-primary">En savoir plus</button></a>
+            </p>
+        </div>
+    {% else %}
+        <div>
+            <p colspan="7">Aucun bien n'est encore en ligne !</p>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

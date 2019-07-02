@@ -6,4 +6,7 @@
 	    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
 	    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
 	</div>
+	<div class="w-75 mx-auto my-2 ">
+		<a href="{{ path('fos_user_change_password') }}"><button class="btn btn-primary">Change Password</button></a>
+	</div>
 </div>
