@@ -36,6 +36,16 @@ class BienRepository extends ServiceEntityRepository
     }
     */
 
+    public function findByOwner($value)
+    {
+        return $this->createQueryBuilder('bien')
+            ->andWhere('bien.owner = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Bien
     {

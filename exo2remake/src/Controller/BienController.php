@@ -21,7 +21,7 @@ class BienController extends AbstractController
     public function index(BienRepository $bienRepository): Response
     {
         return $this->render('bien/index.html.twig', [
-            'biens' => $bienRepository->findBy(['owner_id' == $this->getUser()->getId()]),
+            'biens' => $bienRepository->findByOwner($this->getUser()->getId()),
         ]);
     }
 

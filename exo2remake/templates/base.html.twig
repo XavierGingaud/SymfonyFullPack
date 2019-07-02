@@ -32,12 +32,14 @@
 					</li>
 					{% if is_granted('ROLE_SUPER_ADMIN') %}
 						<li class="nav-item">
-							<a class="nav-link" href="#">Utilisateurs</a>
+							<a class="nav-link" href="{{ path('easyadmin') }}">Zone Administrateur</a>
 						</li>
 					{% endif %}
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('bien_index') }}">Biens</a>
+						<a class="nav-link" href="{{ path('bien_index') }}">Mes Biens</a>
 					</li>
+					{% endif %}
 
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 						<li class="nav-item">

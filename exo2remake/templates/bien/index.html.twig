@@ -3,22 +3,38 @@
 {% block title %}Bien index{% endblock %}
 
 {% block body %}
-    <h1 class="mt-5 mb-2">Liste des bien</h1>
+    <h1 class="mt-5 mb-2">Liste de vos biens</h1>
         
-    {% for bien in biens %}
-        <div class="col-4">
-            <h3>{{ bien.title }}</h3>
-            <p><img src="{{ bien.image }}" alt="placholder"></p>
-            <p>{{ bien.description }}</p>
-            <p>{{ bien.price }}.00€<br>{{ bien.category }}</p>
-            <p>
-                <a href="{{ path('bien_show', {'id': bien.id}) }}"><button class="btn btn-primary">En savoir plus</button></a>
-            </p>
-        </div>
-    {% else %}
-        <div>
-            <p colspan="7">Aucun bien n'est encore en ligne !</p>
-        </div>
-    {% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bien in biens %}
+            <tr>
+                <td>{{ bien.title }}</td>
+                <td>{{ bien.description }}</td>
+                <td>{{ bien.price }}</td>
+                <td>{{ bien.category }}</td>
+                <td><img src="{{ bien.image }}" alt="placholder"></td>
+                <td>
+                    <a class="btn btn-success text-white w-100" href="{{ path('bien_edit', {'id': bien.id}) }}">Modifier</a>
+                    {{ include('bien/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Vous n'avez posté aucun bien</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
